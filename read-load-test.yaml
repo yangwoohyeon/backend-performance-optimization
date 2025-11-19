@@ -1,0 +1,16 @@
+config:
+  target: "http://43.203.244.252:8080"
+  phases:
+    - duration: 100
+      arrivalRate: 10
+      rampTo: 100
+  payload:
+    path: "keys.csv"
+    fields:
+      - "shortenUrlKey"
+
+scenarios:
+  - flow:
+      - get:
+          url: "/{{ shortenUrlKey }}"
+          followRedirect: false
