@@ -8,6 +8,7 @@ kr/co/shortenurlservice/infrastructure/ShortenUrlRepositoryImpl.class
 kr/co/shortenurlservice/application/SimpleShortenUrlService.class
 kr/co/shortenurlservice/domain/ShortenUrlRepository.class
 kr/co/shortenurlservice/presentation/ShortenUrlCreateResponseDto.class
+kr/co/shortenurlservice/domain/SnowflakeKeyGenerator.class
 kr/co/shortenurlservice/domain/NotFoundShortenUrlException.class
 kr/co/shortenurlservice/domain/LackOfShortenUrlKeyException.class
 kr/co/shortenurlservice/presentation/ShortenUrlCreateRequestDto.class

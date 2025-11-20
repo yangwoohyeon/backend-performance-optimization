@@ -5,4 +5,5 @@ import java.util.List;
 public interface ShortenUrlRepository {
     void saveShortenUrl(ShortenUrl shortenUrl);
     ShortenUrl findShortenUrlByShortenUrlKey(String shortenUrlKey);
+    void asyncsaveShortenUrl(ShortenUrl shortenUrl);
 }

@@ -1,9 +1,6 @@
 package kr.co.shortenurlservice.application;
 
-import kr.co.shortenurlservice.domain.LackOfShortenUrlKeyException;
-import kr.co.shortenurlservice.domain.NotFoundShortenUrlException;
-import kr.co.shortenurlservice.domain.ShortenUrl;
-import kr.co.shortenurlservice.domain.ShortenUrlRepository;
+import kr.co.shortenurlservice.domain.*;
 import kr.co.shortenurlservice.presentation.ShortenUrlCreateRequestDto;
 import kr.co.shortenurlservice.presentation.ShortenUrlCreateResponseDto;
 import kr.co.shortenurlservice.presentation.ShortenUrlInformationDto;
@@ -30,7 +27,7 @@ public class SimpleShortenUrlService {
         String shortenUrlKey = getUniqueShortenUrlKey();
 
         ShortenUrl shortenUrl = new ShortenUrl(originalUrl, shortenUrlKey);
-        shortenUrlRepository.saveShortenUrl(shortenUrl);
+        shortenUrlRepository.asyncsaveShortenUrl(shortenUrl);
 
         ShortenUrlCreateResponseDto shortenUrlCreateResponseDto = new ShortenUrlCreateResponseDto(shortenUrl);
         return shortenUrlCreateResponseDto;
@@ -63,18 +60,8 @@ public class SimpleShortenUrlService {
     }
 
     private String getUniqueShortenUrlKey() {
-        final int MAX_RETRY_COUNT = 5;
-        int count = 0;
-
-        while(count++ < MAX_RETRY_COUNT) {
-            String shortenUrlKey = ShortenUrl.generateShortenUrlKey();
-            ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
-
-            if(null == shortenUrl)
-                return shortenUrlKey;
-        }
-
-        throw new LackOfShortenUrlKeyException();
+        //스노우 플레이크로 생성
+        return SnowflakeKeyGenerator.generateSnowflakeKey();
     }
 
 }

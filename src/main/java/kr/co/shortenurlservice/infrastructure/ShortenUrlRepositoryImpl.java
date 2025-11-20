@@ -3,6 +3,7 @@ package kr.co.shortenurlservice.infrastructure;
 import kr.co.shortenurlservice.domain.ShortenUrl;
 import kr.co.shortenurlservice.domain.ShortenUrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +20,12 @@ public class ShortenUrlRepositoryImpl implements ShortenUrlRepository {
 
     @Override
     public void saveShortenUrl(ShortenUrl shortenUrl) {
+        jpaShortenUrlRepository.save(shortenUrl);
+    }
+
+    @Async
+    @Override
+    public void asyncsaveShortenUrl(ShortenUrl shortenUrl) {
         jpaShortenUrlRepository.save(shortenUrl);
     }
 
